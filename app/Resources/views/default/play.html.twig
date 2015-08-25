@@ -4,13 +4,27 @@
     <div id="wrapper">
         <div id="container">
             
-            <h1>Play RPSLS</h1>
-            <h2>What is RPSLS?</h2>
-            <div>
-                <iframe width="420" height="315" src="https://www.youtube.com/embed/Kov2G0GouBw" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <p><a target="_blank" href="http://www.samkass.com/theories/RPSSL.html">More about RPSLS</a>
-            <p><a href="{{ url('play' ) }}">Let's do it!</a></p>
+            <table width="100%">
+                <tr>
+                    <td valign="top" align="center" width="33%">
+                        <h2>You {{ user_choice }}</h2>
+                        <div><a href="/play/{{ '1' }}">Rock</a></div>
+                        <div><a href="/play/{{ '2' }}">Paper</a></div>
+                        <div><a href="/play/{{ '3' }}">Scissors</a></div>
+                        <div><a href="/play/{{ '4' }}">Lizard</a></div>
+                        <div><a href="/play/{{ '5' }}">Spock</a></div>
+                        <p></p>
+                    </td>
+                    <td valign="top" align="center" width="33%">
+                        <h2>Score</h2>
+                        <p></p>
+                    </td>
+                    <td valign="top" align="center" width="33%">
+                        <h2>Me</h2>
+                        <p>{{ comp_choice }}</p>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 {% endblock %}
