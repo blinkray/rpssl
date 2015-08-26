@@ -1,0 +1,53 @@
+
+<table width="100%" border="1">
+    <thead>
+    	<tr>
+    		<td align="center">Out of <em>{{ matches | length }} Matches</em></td>
+    		<td align="center">You've Won <em>{{ wins }}</em></td>
+    		<td align="center">You've Lost <em>{{ losses }}</em></td>
+    	</tr>
+	    <tr>
+	    	<th>OUTCOME</th>
+	    	<th>You Played</th>
+	    	<th>Computer Played</th>
+	    </tr>
+    </thead>
+    <tbody>
+    	
+    {% for match in matches %}
+    	<tr>
+    		<td align="center">
+    			{% if match.userWon %}<span style="color:green;">WIN{% endif %}
+    			{% if match.compWon %}<span style="color:red;">LOSS</span>{% endif %}
+    			{% if match.userCompTie %}<span>TIE</span>{% endif %}
+    		</td>
+    		<td align="center">
+        		{% if match.userRock == 1 %}
+        			ROCK
+        		{% elseif match.userPaper == 1 %}
+        			PAPER
+        		{% elseif match.userScissors == 1 %}
+        			SCISSORS
+        		{% elseif match.userLizard == 1 %}
+        			LIZARD
+        		{% elseif match.userSpock == 1 %}
+        			SPOCK
+        		{% endif %}
+        	</td>
+        	<td align="center">
+        		{% if match.compRock == 1 %}
+        			ROCK
+        		{% elseif match.compPaper == 1 %}
+        			PAPER
+        		{% elseif match.compScissors == 1 %}
+        			SCISSORS
+        		{% elseif match.compLizard == 1 %}
+        			LIZARD
+        		{% elseif match.compSpock == 1 %}
+        			SPOCK
+        		{% endif %}
+        	</td>
+    	</tr>        
+    {% endfor %}  
+    </tbody>  
+</table>

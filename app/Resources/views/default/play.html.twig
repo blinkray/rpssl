@@ -10,34 +10,69 @@
         <table width="100%">
             <tr>
                 <td valign="top" align="center" width="33%">
-                    <h2>SID {{ sid }}</h2>
-                    <h2>You {{ user_choice }}</h2>
-                    <p>Select your choice</p>
+                    <p>You Played</p>
+                    <h2>                        
+                        {% if user_choice == 1 %}
+                            ROCK
+                        {% elseif user_choice == 2 %}
+                            PAPER
+                        {% elseif user_choice == 3 %}
+                            SCISSORS
+                        {% elseif user_choice == 4 %}
+                            LIZARD
+                        {% elseif user_choice == 5 %}
+                            SPOCK
+                        {% endif %}
+                    </h2>
+                </td>
+                <td valign="top" align="center" width="33%">
+                    
+                    {% if outcome is not defined %}
+                        &nbsp;
+                    {% else %}
+                        {% if outcome == "YOU WIN" %}
+                            <h1 style="color:green;">{{ outcome }}</h1>
+                        {% else %}
+                            <h1 style="color:red;">{{ outcome }}</h1>
+                        {% endif %}
+                    {% endif %}
+
+                    <p>Choose Your Weapon</p>
                     {{ form_start(form) }}
                     {{ form_widget(form) }}
                     {{ form_end(form) }}
+                    <br>
+                    
                 </td>
                 <td valign="top" align="center" width="33%">
-                    <h2>Score</h2>
-                    <p>
-                        {% if outcome is not defined %}
+                    <p>Computer Played</p>
+                    
+                    <h2>
+                        {% if comp_choice is not defined %}
                             &nbsp;
                         {% else %}
-                            {{ outcome }}
-                        {% endif %}</p>
-                    </p>
-                </td>
-                <td valign="top" align="center" width="33%">
-                    <h2>Computer</h2>
-                    <p>
-                    {% if comp_choice is not defined %}
-                        computer
-                    {% else %}
-                        {{ comp_choice }}
-                    {% endif %}</p>
+                            {% if comp_choice == 1 %}
+                                ROCK
+                            {% elseif comp_choice == 2 %}
+                                PAPER
+                            {% elseif comp_choice == 3 %}
+                                SCISSORS
+                            {% elseif comp_choice == 4 %}
+                                LIZARD
+                            {% elseif comp_choice == 5 %}
+                                SPOCK
+                            {% endif %}
+                        {% endif %}
+                    </h2>
                 </td>
             </tr>
         </table>
+
+        
+        {% if matches is defined %}
+            {{ include('default/history.html.twig', { 'matches': matches }) }}
+        {% endif %}
+                
 
 
 
