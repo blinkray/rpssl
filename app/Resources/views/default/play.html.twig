@@ -11,17 +11,19 @@
             <tr>
                 <td valign="top" align="center" width="33%">
                     <p>You Played</p>
-                    <h2>                        
-                        {% if user_choice == 1 %}
-                            ROCK
-                        {% elseif user_choice == 2 %}
-                            PAPER
-                        {% elseif user_choice == 3 %}
-                            SCISSORS
-                        {% elseif user_choice == 4 %}
-                            LIZARD
-                        {% elseif user_choice == 5 %}
-                            SPOCK
+                    <h2>     
+                        {% if user_choice is defined %}                   
+                            {% if user_choice == 1 %}
+                                ROCK
+                            {% elseif user_choice == 2 %}
+                                PAPER
+                            {% elseif user_choice == 3 %}
+                                SCISSORS
+                            {% elseif user_choice == 4 %}
+                                LIZARD
+                            {% elseif user_choice == 5 %}
+                                SPOCK
+                            {% endif %}
                         {% endif %}
                     </h2>
                 </td>
@@ -32,8 +34,10 @@
                     {% else %}
                         {% if outcome == "YOU WIN" %}
                             <h1 style="color:green;">{{ outcome }}</h1>
-                        {% else %}
+                        {% elseif outcome == "YOU LOSE" %}
                             <h1 style="color:red;">{{ outcome }}</h1>
+                        {% elseif outcome == "TIE" %}
+                            <h1>{{ outcome }}</h1>
                         {% endif %}
                     {% endif %}
 

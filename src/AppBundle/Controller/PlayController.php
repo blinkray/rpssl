@@ -14,10 +14,8 @@ class PlayController extends Controller
     **/
     public function indexAction(Request $request)
     {        
-        $sessionID = $this->getRequest()->getSession()->getId();
-        $user_choice = 0;
+        
         $match = new RpsslMatch();
-
         $form = $this->createFormBuilder( $match )
             ->setAction($this->generateUrl('game'))
             ->setMethod('POST')
@@ -29,8 +27,7 @@ class PlayController extends Controller
             ->getForm();
 
         return $this->render('default/play.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'form' => $form->createView(),
-            'user_choice' => $user_choice
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),'form' => $form->createView()
         ));
     }
 
@@ -40,6 +37,12 @@ class PlayController extends Controller
     public function gameAction(Request $request)
     {    
 
+        $outcome = "";
+        $user_choice = 0;
+        $comp_choice = 0;
+        $wins = 0;
+        $losses = 0;
+        $matches = null;
         $match = new RpsslMatch();
 
         $form = $this->createFormBuilder( $match )
@@ -63,31 +66,10 @@ class PlayController extends Controller
             ) {
         
 
-            $outcome = "";
-            $sessionID = $this->getRequest()->getSession()->getId();
-            $user_choice = 0;
-            $comp_choice = 0;
             
-
-            /**
-                * 1 = rock
-                * 2 = paper
-                * 3 = scissors
-                * 4 = lizard
-                * 5 = spock
-                *
-                * SCISSORS CUTS PAPER
-                * PAPER COVERS ROCK
-                * ROCK CRUSHES LIZARD
-                * LIZARD POISONS SPOCK
-                * SPOCK SMASHES SCISSORS
-                * SCISSORS DECAPITES LIZARD
-                * LIZARD EATS PAPER
-                * PAPER DISPROVES SPOCK
-                * SPOCK VAPORIZES ROCK
-                * ROCK CRUSHES SCISSORS
-            **/
-
+            //$sessionID = $this->getRequest()->getSession()->getId();
+            $match->setUserSid( $this->getRequest()->getSession()->getId() );
+            
             //setting computer values
             $comp_choice = rand( 1, 5 );
             if( $comp_choice == 1 ){
@@ -126,7 +108,7 @@ class PlayController extends Controller
                 $match->setCompSpock( 1 );
             }
 
-            $match->setUserSid( $sessionID );
+            
 
 
             // game logic - who wins this "match" if user clicks ROCK?
@@ -293,17 +275,15 @@ class PlayController extends Controller
             $em->flush();
             
             //fetch match history
-            $wins = 0;
-            $losses = 0;
+            
             $repository = $this->getDoctrine()
                 ->getRepository('AppBundle:RpsslMatch');
             $matches = $repository->findBy(
-                array('user_sid' => $sessionID ),
+                array('user_sid' => $match->getUserSid() ),
                 array('created' => 'DESC')
             );
 
             //get some stats to show score
-            $rep_match = null;
             foreach (  $matches as $rep_match ) {
                 if( $rep_match->getUserWon() ) {
                     $wins += 1;
@@ -312,18 +292,18 @@ class PlayController extends Controller
                     $losses += 1;
                 }
             }
-
-
-            return $this->render('default/play.html.twig', array( 
-                'form' => $form->createView(),  'user_choice' => $user_choice, 
-                'comp_choice' => $comp_choice,  
-                'outcome' => $outcome,  
-                'matches' => $matches,
-                'wins' => $wins,
-                'losses' => $losses,
-            ));
-
         }
+            
+        return $this->render('default/play.html.twig', array( 
+            'form' => $form->createView(),  'user_choice' => $user_choice, 
+            'comp_choice' => $comp_choice,  
+            'outcome' => $outcome,  
+            'matches' => $matches,
+            'wins' => $wins,
+            'losses' => $losses,
+        ));
+
+        
 
         
     }
