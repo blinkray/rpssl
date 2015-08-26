@@ -3,19 +3,51 @@
 {% block body %}
     <div id="wrapper">
         <div id="container">
-            <div>{{ user_choice }}</div>
-            <div>
-                {{ form_start(form) }}
-                {{ form_widget(form) }}
-                {{ form_end(form) }}
-            </div>
-            <div>
-                {% if comp_choice is not defined %}
-                    computer
-                {% else %}
-                    {{ comp_choice }}
-                {% endif %}
-            </div>
+            
+
+
+
+        <table width="100%">
+            <tr>
+                <td valign="top" align="center" width="33%">
+                    <h2>SID {{ sid }}</h2>
+                    <h2>You {{ user_choice }}</h2>
+                    <p>Select your choice</p>
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}
+                </td>
+                <td valign="top" align="center" width="33%">
+                    <h2>Score</h2>
+                    <p>
+                        {% if outcome is not defined %}
+                            &nbsp;
+                        {% else %}
+                            {{ outcome }}
+                        {% endif %}</p>
+                    </p>
+                </td>
+                <td valign="top" align="center" width="33%">
+                    <h2>Computer</h2>
+                    <p>
+                    {% if comp_choice is not defined %}
+                        computer
+                    {% else %}
+                        {{ comp_choice }}
+                    {% endif %}</p>
+                </td>
+            </tr>
+        </table>
+
+
+
+
+
+
+
+
+
+
         </div>
     </div>
 {% endblock %}
