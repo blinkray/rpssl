@@ -3,28 +3,19 @@
 {% block body %}
     <div id="wrapper">
         <div id="container">
-            
-            <table width="100%">
-                <tr>
-                    <td valign="top" align="center" width="33%">
-                        <h2>You {{ user_choice }}</h2>
-                        <div><a href="/play/{{ '1' }}">Rock</a></div>
-                        <div><a href="/play/{{ '2' }}">Paper</a></div>
-                        <div><a href="/play/{{ '3' }}">Scissors</a></div>
-                        <div><a href="/play/{{ '4' }}">Lizard</a></div>
-                        <div><a href="/play/{{ '5' }}">Spock</a></div>
-                        <p></p>
-                    </td>
-                    <td valign="top" align="center" width="33%">
-                        <h2>Score</h2>
-                        <p></p>
-                    </td>
-                    <td valign="top" align="center" width="33%">
-                        <h2>Me</h2>
-                        <p>{{ comp_choice }}</p>
-                    </td>
-                </tr>
-            </table>
+            <div>{{ user_choice }}</div>
+            <div>
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            </div>
+            <div>
+                {% if comp_choice is not defined %}
+                    computer
+                {% else %}
+                    {{ comp_choice }}
+                {% endif %}
+            </div>
         </div>
     </div>
 {% endblock %}
