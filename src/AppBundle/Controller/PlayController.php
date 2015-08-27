@@ -44,8 +44,19 @@ class PlayController extends Controller
         $ties = 0;
         $losses = 0;
         $matches = null;
-        $match = new RpsslMatch();
 
+        $comp_rock = 0; 
+        $you_rock = 0; 
+        $comp_paper = 0;
+        $you_paper = 0;  
+        $comp_scissors = 0;  
+        $you_scissors = 0; 
+        $comp_lizard = 0; 
+        $you_lizard = 0;
+        $comp_spock = 0;
+        $you_spock = 0;
+
+        $match = new RpsslMatch();
         $form = $this->createFormBuilder( $match )
             ->setAction($this->generateUrl('game'))
             ->setMethod('POST')
@@ -210,8 +221,55 @@ class PlayController extends Controller
                 array('created' => 'DESC')
             );
 
+            $comp_rock = 0; 
+        $you_rock = 0; 
+        $comp_paper = 0;
+        $you_paper = 0;  
+        $comp_scissors = 0;  
+        $you_scissors = 0; 
+        $comp_lizard = 0; 
+        $you_lizard = 0;
+        $comp_spock = 0;
+        $you_spock = 0;
+
+
             //get some stats to show score
             foreach (  $matches as $rep_match ) {
+                if( $rep_match->getUserRock() == 1 ) {
+                    $you_rock += 1;
+                }
+                if( $rep_match->getCompRock() == 1 ) {
+                    $comp_rock += 1;
+                }
+
+                if( $rep_match->getUserPaper() == 1 ) {
+                    $you_paper += 1;
+                }
+                if( $rep_match->getCompPaper() == 1 ) {
+                    $comp_paper += 1;
+                }
+
+                if( $rep_match->getUserScissors() == 1 ) {
+                    $you_scissors += 1;
+                }
+                if( $rep_match->getCompScissors() == 1 ) {
+                    $comp_scissors += 1;
+                }
+
+                if( $rep_match->getUserLizard() == 1 ) {
+                    $you_lizard += 1;
+                }
+                if( $rep_match->getCompLizard() == 1 ) {
+                    $comp_lizard += 1;
+                }
+
+                if( $rep_match->getUserSpock() == 1 ) {
+                    $you_spock += 1;
+                }
+                if( $rep_match->getCompSpock() == 1 ) {
+                    $comp_spock += 1;
+                }
+
                 if( $rep_match->getUserWon() ) {
                     $wins += 1;
                 }
@@ -231,6 +289,16 @@ class PlayController extends Controller
             'wins' => $wins,
             'losses' => $losses,
             'ties' => $ties,
+            'comp_rock' => $comp_rock, 
+            'you_rock' => $you_rock,
+            'comp_paper' => $comp_paper,
+            'you_paper' => $you_paper,
+            'comp_scissors' => $comp_scissors,  
+            'you_scissors' => $you_scissors,
+            'comp_lizard' => $comp_lizard, 
+            'you_lizard' => $you_lizard,
+            'comp_spock' => $comp_spock,
+            'you_spock' => $you_spock,
         ));
 
         

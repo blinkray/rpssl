@@ -22,7 +22,7 @@ class PlayControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/playAction');
+        $crawler = $client->request('POST', '/playAction');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertTrue($client->getResponse()->isSuccessful());
