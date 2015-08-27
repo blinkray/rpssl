@@ -2,12 +2,11 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}ROCK PAPER SCISSORS LIZARD SPOCK!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body>
-        <h1><a href="{{ url('homepage' ) }}">Home</a></h1></h1>
+    <body>        
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

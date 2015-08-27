@@ -67,47 +67,44 @@ class PlayController extends Controller
         
 
             
-            //$sessionID = $this->getRequest()->getSession()->getId();
+            //set some data for this match
             $match->setUserSid( $this->getRequest()->getSession()->getId() );
+            $match->setCreated( new \DateTime() );
+            $match->setModified( new \DateTime() );
             
-            //setting computer values
+            //setting initial computer values
+            $match->setCompRock( 0 );
+            $match->setCompPaper( 0 );
+            $match->setCompScissors( 0 );
+            $match->setCompLizard( 0 );
+            $match->setCompSpock( 0 );
+            $match->setCompWon( false );
+
             $comp_choice = rand( 1, 5 );
             if( $comp_choice == 1 ){
                 $match->setCompRock( 1 );
-                $match->setCompPaper( 0 );
-                $match->setCompScissors( 0 );
-                $match->setCompLizard( 0 );
-                $match->setCompSpock( 0 );
             }
-            if( $comp_choice == 2){
-                $match->setCompRock( 0 );
-                $match->setCompPaper( 1 );
-                $match->setCompScissors( 0 );
-                $match->setCompLizard( 0 );
-                $match->setCompSpock( 0 );
+            if( $comp_choice == 2){                
+                $match->setCompPaper( 1 );                
             }
             if( $comp_choice == 3){
-                $match->setCompRock( 0 );
-                $match->setCompPaper( 0 );
                 $match->setCompScissors( 1 );
-                $match->setCompLizard( 0 );
-                $match->setCompSpock( 0 );
             }
             if( $comp_choice == 4){
-                $match->setCompRock( 0 );
-                $match->setCompPaper( 0 );
-                $match->setCompScissors( 0 );
                 $match->setCompLizard( 1 );
-                $match->setCompSpock( 0 );
             }
             if( $comp_choice == 5){
-                $match->setCompRock( 0 );
-                $match->setCompPaper( 0 );
-                $match->setCompScissors( 0 );
-                $match->setCompLizard( 0 );
                 $match->setCompSpock( 1 );
             }
 
+            //setting initial user values
+            $match->setUserRock( 0 );
+            $match->setUserPaper( 0 );
+            $match->setUserScissors( 0 );
+            $match->setUserLizard( 0 );
+            $match->setUserSpock( 0 );
+            $match->setUserWon( false );
+            $match->setUserCompTie( false );
             
 
 
@@ -115,29 +112,20 @@ class PlayController extends Controller
             if ( $form->get('user_rock')->isClicked() ) {
                 $user_choice = 1;
                 $match->setUserRock( 1 );
-                $match->setUserPaper( 0 );
-                $match->setUserScissors( 0 );
-                $match->setUserLizard( 0 );
-                $match->setUserSpock( 0 );
                 if( $user_choice == $comp_choice ){
                     $outcome = "TIE";
                     $match->setCompRock( 1 );
-                    $match->setUserCompTie( true );
-                    $match->setUserWon( false );
-                    $match->setCompWon( false );
+                    $match->setUserCompTie( true );  
                 }
                 else {
                     $match->setUserCompTie( false );
                     if( $comp_choice == 2 || $comp_choice == 5 ) {
                         $outcome = "YOU LOSE";
                         $match->setCompWon( true );
-                        $match->setUserWon( false );
-                    }
-                    
+                    }                    
                     else {
                         $outcome = "YOU WIN";
                         $match->setUserWon( true );
-                        $match->setCompWon( false );
                     }
                 }
                 
@@ -145,31 +133,21 @@ class PlayController extends Controller
 
             // game logic - who wins this "match" if user clicks PAPER?
             if ( $form->get('user_paper')->isClicked() ) {
-                $user_choice = 2;
-                $match->setUserRock( 0 );
+                $user_choice = 2;                
                 $match->setUserPaper( 1 );
-                $match->setUserScissors( 0 );
-                $match->setUserLizard( 0 );
-                $match->setUserSpock( 0 );
                 if( $user_choice == $comp_choice ){
                     $outcome = "TIE";
                     $match->setCompPaper( 1 );
                     $match->setUserCompTie( true );
-                    $match->setUserWon( false );
-                    $match->setCompWon( false );
                 }
-                else {
-                    $match->setUserCompTie( false );
+                else {                    
                     if( $comp_choice == 3 || $comp_choice == 4 ) {
                         $outcome = "YOU LOSE";
                         $match->setCompWon( true );
-                        $match->setUserWon( false );
-                    }
-                    
+                    }                    
                     else {
                         $outcome = "YOU WIN";
                         $match->setUserWon( true );
-                        $match->setCompWon( false );
                     }
                 }
             }
@@ -177,30 +155,20 @@ class PlayController extends Controller
             // game logic - who wins this "match" if user clicks SCISSORS?
             if ( $form->get('user_scissors')->isClicked() ) {
                 $user_choice = 3;
-                $match->setUserRock( 0 );
-                $match->setUserPaper( 0 );
-                $match->setUserScissors( 1 );
-                $match->setUserLizard( 0 );
-                $match->setUserSpock( 0 );
+                $match->setUserScissors( 1 );                
                 if( $user_choice == $comp_choice ){
                     $outcome = "TIE";
                     $match->setCompScissors( 1 );
                     $match->setUserCompTie( true );
-                    $match->setUserWon( false );
-                    $match->setCompWon( false );
                 }
                 else {
-                    $match->setUserCompTie( false );
                     if( $comp_choice == 5 || $comp_choice == 1 ) {
                         $outcome = "YOU LOSE";
                         $match->setCompWon( true );
-                        $match->setUserWon( false );
-                    }
-                    
+                    }                    
                     else {
                         $outcome = "YOU WIN";
                         $match->setUserWon( true );
-                        $match->setCompWon( false );
                     }
                 }
             }
@@ -208,30 +176,20 @@ class PlayController extends Controller
             // game logic - who wins this "match" if user clicks LIZARD?
             if ( $form->get('user_lizard')->isClicked() ) {
                 $user_choice = 4;
-                $match->setUserRock( 0 );
-                $match->setUserPaper( 0 );
-                $match->setUserScissors( 0 );
                 $match->setUserLizard( 1 );
-                $match->setUserSpock( 0 );
                 if( $user_choice == $comp_choice ){
                     $outcome = "TIE";
                     $match->setCompLizard( 1 );
                     $match->setUserCompTie( true );
-                    $match->setUserWon( false );
-                    $match->setCompWon( false );
                 }
                 else {
-                    $match->setUserCompTie( false );
                     if( $comp_choice == 3 || $comp_choice == 1 ) {
                         $outcome = "YOU LOSE";
                         $match->setCompWon( true );
-                        $match->setUserWon( false );
-                    }
-                    
+                    }                    
                     else {
                         $outcome = "YOU WIN";
                         $match->setUserWon( true );
-                        $match->setCompWon( false );
                     }
                 }
             }
@@ -239,43 +197,30 @@ class PlayController extends Controller
             // game logic - who wins this "match" if user clicks SPOCK?
             if ( $form->get('user_spock')->isClicked() ) {
                 $user_choice = 5;
-                $match->setUserRock( 0 );
-                $match->setUserPaper( 0 );
-                $match->setUserScissors( 0 );
-                $match->setUserLizard( 0 );
                 $match->setUserSpock( 1 );
                 if( $user_choice == $comp_choice ){
                     $outcome = "TIE";
                     $match->setCompSpock( 1 );
                     $match->setUserCompTie( true );
-                    $match->setUserWon( false );
-                    $match->setCompWon( false );
                 }
                 else {
-                    $match->setUserCompTie( false );
                     if( $comp_choice == 4 || $comp_choice == 2 ) {
                         $outcome = "YOU LOSE";
                         $match->setCompWon( true );
-                        $match->setUserWon( false );
-                    }
-                    
+                    }                    
                     else {
                         $outcome = "YOU WIN";
                         $match->setUserWon( true );
-                        $match->setCompWon( false );
                     }
                 }
             }
 
-            //saving this "match" to database
-            $match->setCreated( new \DateTime() );
-            $match->setModified( new \DateTime() );
+            //saving this "match" to database            
             $em = $this->getDoctrine()->getManager();
             $em->persist( $match );
             $em->flush();
             
-            //fetch match history
-            
+            //fetch match history for stats            
             $repository = $this->getDoctrine()
                 ->getRepository('AppBundle:RpsslMatch');
             $matches = $repository->findBy(
