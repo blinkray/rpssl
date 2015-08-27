@@ -41,6 +41,7 @@ class PlayController extends Controller
         $user_choice = 0;
         $comp_choice = 0;
         $wins = 0;
+        $ties = 0;
         $losses = 0;
         $matches = null;
         $match = new RpsslMatch();
@@ -64,8 +65,6 @@ class PlayController extends Controller
             $form->get('user_spock')->isClicked()
 
             ) {
-        
-
             
             //set some data for this match
             $match->setUserSid( $this->getRequest()->getSession()->getId() );
@@ -104,27 +103,22 @@ class PlayController extends Controller
             $match->setUserLizard( 0 );
             $match->setUserSpock( 0 );
             $match->setUserWon( false );
-            $match->setUserCompTie( false );
-            
-
+            $match->setUserCompTie( false );  
 
             // game logic - who wins this "match" if user clicks ROCK?
             if ( $form->get('user_rock')->isClicked() ) {
                 $user_choice = 1;
                 $match->setUserRock( 1 );
-                if( $user_choice == $comp_choice ){
-                    $outcome = "TIE";
+                if( $user_choice == $comp_choice ){                    
                     $match->setCompRock( 1 );
                     $match->setUserCompTie( true );  
                 }
                 else {
                     $match->setUserCompTie( false );
-                    if( $comp_choice == 2 || $comp_choice == 5 ) {
-                        $outcome = "YOU LOSE";
+                    if( $comp_choice == 2 || $comp_choice == 5 ) {                        
                         $match->setCompWon( true );
                     }                    
-                    else {
-                        $outcome = "YOU WIN";
+                    else {                        
                         $match->setUserWon( true );
                     }
                 }
@@ -135,18 +129,15 @@ class PlayController extends Controller
             if ( $form->get('user_paper')->isClicked() ) {
                 $user_choice = 2;                
                 $match->setUserPaper( 1 );
-                if( $user_choice == $comp_choice ){
-                    $outcome = "TIE";
+                if( $user_choice == $comp_choice ){                    
                     $match->setCompPaper( 1 );
                     $match->setUserCompTie( true );
                 }
                 else {                    
-                    if( $comp_choice == 3 || $comp_choice == 4 ) {
-                        $outcome = "YOU LOSE";
+                    if( $comp_choice == 3 || $comp_choice == 4 ) {                        
                         $match->setCompWon( true );
                     }                    
-                    else {
-                        $outcome = "YOU WIN";
+                    else {                        
                         $match->setUserWon( true );
                     }
                 }
@@ -156,18 +147,15 @@ class PlayController extends Controller
             if ( $form->get('user_scissors')->isClicked() ) {
                 $user_choice = 3;
                 $match->setUserScissors( 1 );                
-                if( $user_choice == $comp_choice ){
-                    $outcome = "TIE";
+                if( $user_choice == $comp_choice ){                    
                     $match->setCompScissors( 1 );
                     $match->setUserCompTie( true );
                 }
                 else {
-                    if( $comp_choice == 5 || $comp_choice == 1 ) {
-                        $outcome = "YOU LOSE";
+                    if( $comp_choice == 5 || $comp_choice == 1 ) {                        
                         $match->setCompWon( true );
                     }                    
-                    else {
-                        $outcome = "YOU WIN";
+                    else {                        
                         $match->setUserWon( true );
                     }
                 }
@@ -177,18 +165,15 @@ class PlayController extends Controller
             if ( $form->get('user_lizard')->isClicked() ) {
                 $user_choice = 4;
                 $match->setUserLizard( 1 );
-                if( $user_choice == $comp_choice ){
-                    $outcome = "TIE";
+                if( $user_choice == $comp_choice ){                    
                     $match->setCompLizard( 1 );
                     $match->setUserCompTie( true );
                 }
                 else {
-                    if( $comp_choice == 3 || $comp_choice == 1 ) {
-                        $outcome = "YOU LOSE";
+                    if( $comp_choice == 3 || $comp_choice == 1 ) {                        
                         $match->setCompWon( true );
                     }                    
-                    else {
-                        $outcome = "YOU WIN";
+                    else {                        
                         $match->setUserWon( true );
                     }
                 }
@@ -198,18 +183,15 @@ class PlayController extends Controller
             if ( $form->get('user_spock')->isClicked() ) {
                 $user_choice = 5;
                 $match->setUserSpock( 1 );
-                if( $user_choice == $comp_choice ){
-                    $outcome = "TIE";
+                if( $user_choice == $comp_choice ){                    
                     $match->setCompSpock( 1 );
                     $match->setUserCompTie( true );
                 }
                 else {
-                    if( $comp_choice == 4 || $comp_choice == 2 ) {
-                        $outcome = "YOU LOSE";
+                    if( $comp_choice == 4 || $comp_choice == 2 ) {                        
                         $match->setCompWon( true );
                     }                    
-                    else {
-                        $outcome = "YOU WIN";
+                    else {                        
                         $match->setUserWon( true );
                     }
                 }
@@ -233,19 +215,22 @@ class PlayController extends Controller
                 if( $rep_match->getUserWon() ) {
                     $wins += 1;
                 }
-                else {
+                if( $rep_match->getCompWon() ) {
                     $losses += 1;
+                }
+                if( $rep_match->getUserCompTie() ) {
+                    $ties += 1;
                 }
             }
         }
             
         return $this->render('default/play.html.twig', array( 
-            'form' => $form->createView(),  'user_choice' => $user_choice, 
-            'comp_choice' => $comp_choice,  
-            'outcome' => $outcome,  
+            'form' => $form->createView(),  
+            'the_match' => $match,
             'matches' => $matches,
             'wins' => $wins,
             'losses' => $losses,
+            'ties' => $ties,
         ));
 
         

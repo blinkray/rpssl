@@ -1,11 +1,15 @@
 {% if matches|length > 0 %}
-<table width="100%" border="1">
-    <thead>
+<table width="100%" border="1">    
     	<tr>
     		<td align="center">Out of <em>{{ matches | length }} Matches</em></td>
     		<td align="center">You've Won <em>{{ wins }}</em></td>
+    		<td align="center">You've Tied <em>{{ ties }}</em></td>
     		<td align="center">You've Lost <em>{{ losses }}</em></td>
     	</tr>
+</table>
+<hr>
+<table width="100%" border="1">
+    <thead>    	
 	    <tr>
 	    	<th>OUTCOME</th>
 	    	<th>You Played</th>

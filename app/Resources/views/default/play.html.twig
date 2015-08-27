@@ -4,88 +4,73 @@
     <div id="wrapper">
         <div id="container">
             <span><a href="{{ url('homepage' ) }}">Home</a></span>
-
-
-
-        <table width="100%">
-            <tr>
-                <td valign="top" align="center" width="33%">
-                    <p>You Played</p>
-                    <h2>     
-                        {% if user_choice is defined %}                   
-                            {% if user_choice == 1 %}
-                                ROCK
-                            {% elseif user_choice == 2 %}
-                                PAPER
-                            {% elseif user_choice == 3 %}
-                                SCISSORS
-                            {% elseif user_choice == 4 %}
-                                LIZARD
-                            {% elseif user_choice == 5 %}
-                                SPOCK
+            
+            <table width="100%">
+                <tr>
+                    <td valign="top" align="center" width="33%">
+                        <p>You Played</p>
+                        <h2>     
+                            {% if the_match is defined %}                   
+                                {% if the_match.getUserRock == 1 %}
+                                    ROCK
+                                {% elseif the_match.getUserPaper == 1 %}
+                                    PAPER
+                                {% elseif the_match.getUserScissors == 1 %}
+                                    SCISSORS
+                                {% elseif the_match.getUserLizard == 1 %}
+                                    LIZARD
+                                {% elseif the_match.getUserSpock == 1 %}
+                                    SPOCK
+                                {% endif %}
+                            {% endif %}
+                        </h2>
+                    </td>
+                    <td valign="top" align="center" width="33%">
+                        
+                        {% if the_match is defined %}                        
+                            {% if the_match.getUserWon %}
+                                <h1 style="color:green;">YOU WIN!!</h1>
+                            {% elseif the_match.getCompWon %}
+                                <h1 style="color:red;">YOU LOSE</h1>
+                            {% elseif the_match.getUserCompTie %}
+                                <h1>TIE</h1>
                             {% endif %}
                         {% endif %}
-                    </h2>
-                </td>
-                <td valign="top" align="center" width="33%">
-                    
-                    {% if outcome is not defined %}
-                        &nbsp;
-                    {% else %}
-                        {% if outcome == "YOU WIN" %}
-                            <h1 style="color:green;">{{ outcome }}</h1>
-                        {% elseif outcome == "YOU LOSE" %}
-                            <h1 style="color:red;">{{ outcome }}</h1>
-                        {% elseif outcome == "TIE" %}
-                            <h1>{{ outcome }}</h1>
-                        {% endif %}
-                    {% endif %}
 
-                    <p>Choose Your Weapon</p>
-                    {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                    {{ form_end(form) }}
-                    <br>
-                    
-                </td>
-                <td valign="top" align="center" width="33%">
-                    <p>Computer Played</p>
-                    
-                    <h2>
-                        {% if comp_choice is not defined %}
-                            &nbsp;
-                        {% else %}
-                            {% if comp_choice == 1 %}
-                                ROCK
-                            {% elseif comp_choice == 2 %}
-                                PAPER
-                            {% elseif comp_choice == 3 %}
-                                SCISSORS
-                            {% elseif comp_choice == 4 %}
-                                LIZARD
-                            {% elseif comp_choice == 5 %}
-                                SPOCK
+                        <p>Choose Your Weapon</p>
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        {{ form_end(form) }}
+                        <br>
+                        
+                    </td>
+                    <td valign="top" align="center" width="33%">
+                        <p>Computer Played</p>
+                        
+                        <h2>
+                            {% if the_match is not defined %}
+                                &nbsp;
+                            {% else %}
+                                {% if the_match.getCompRock == 1 %}
+                                    ROCK
+                                {% elseif the_match.getCompPaper == 1 %}
+                                    PAPER
+                                {% elseif the_match.getCompScissors == 1 %}
+                                    SCISSORS
+                                {% elseif the_match.getCompLizard == 1 %}
+                                    LIZARD
+                                {% elseif the_match.getCompSpock == 1 %}
+                                    SPOCK
+                                {% endif %}
                             {% endif %}
-                        {% endif %}
-                    </h2>
-                </td>
-            </tr>
-        </table>
-
+                        </h2>
+                    </td>
+                </tr>
+            </table>
         
-        {% if matches is defined %}
-            {{ include('default/history.html.twig', { 'matches': matches }) }}
-        {% endif %}
-                
-
-
-
-
-
-
-
-
-
+            {% if matches is defined %}
+                {{ include('default/history.html.twig', { 'matches': matches }) }}
+            {% endif %}
 
         </div>
     </div>
