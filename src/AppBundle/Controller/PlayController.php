@@ -221,18 +221,6 @@ class PlayController extends Controller
                 array('created' => 'DESC')
             );
 
-            $comp_rock = 0; 
-        $you_rock = 0; 
-        $comp_paper = 0;
-        $you_paper = 0;  
-        $comp_scissors = 0;  
-        $you_scissors = 0; 
-        $comp_lizard = 0; 
-        $you_lizard = 0;
-        $comp_spock = 0;
-        $you_spock = 0;
-
-
             //get some stats to show score
             foreach (  $matches as $rep_match ) {
                 if( $rep_match->getUserRock() == 1 ) {
