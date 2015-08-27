@@ -12,19 +12,19 @@
     <tbody>    
         <tr>
             <td align="center">YOU</td>
-            <td align="center">{{ you_rock }}</td>
-            <td align="center">{{ you_paper }}</td>
-            <td align="center">{{ you_scissors }}</em></td>
-            <td align="center">{{ you_lizard }}</td>
-            <td align="center">{{ you_spock }}</td>
+            <td align="center">{{ stats['you_rock'] }}</td>
+            <td align="center">{{ stats['you_paper'] }}</td>
+            <td align="center">{{ stats['you_scissors'] }}</em></td>
+            <td align="center">{{ stats['you_lizard'] }}</td>
+            <td align="center">{{ stats['you_spock'] }}</td>
         </tr>
         <tr>
             <td align="center">COMPUTER</td>
-            <td align="center">{{ comp_rock }}</td>
-            <td align="center">{{ comp_paper }}</td>
-            <td align="center">{{ comp_scissors }}</em></td>
-            <td align="center">{{ comp_lizard }}</td>
-            <td align="center">{{ comp_spock }}</td>
+            <td align="center">{{ stats['comp_rock'] }}</td>
+            <td align="center">{{ stats['comp_paper'] }}</td>
+            <td align="center">{{ stats['comp_scissors'] }}</em></td>
+            <td align="center">{{ stats['comp_lizard'] }}</td>
+            <td align="center">{{ stats['comp_spock'] }}</td>
         </tr>
     </tbody>
 </table>
@@ -33,9 +33,9 @@
 <table width="100%" border="1">    
         <tr>
             <td align="center">Out of <em>{{ matches | length }} Matches</em></td>
-            <td align="center">You've Won <em>{{ wins }}</em></td>
-            <td align="center">You've Tied <em>{{ ties }}</em></td>
-            <td align="center">You've Lost <em>{{ losses }}</em></td>
+            <td align="center">You've Won <em>{{ stats['wins'] }}</em></td>
+            <td align="center">You've Tied <em>{{ stats['ties'] }}</em></td>
+            <td align="center">You've Lost <em>{{ stats['losses'] }}</em></td>
         </tr>
 </table>
 <br>

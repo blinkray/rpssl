@@ -19,7 +19,7 @@ class MatchUtil
     * Populate Match
     * Method to build the match and fill properties
     */
-    public function populateMatch( $form, $sessionid, $match ) {
+    public function populateMatch( $form, $sessionid, $match, $comp_choice ) {
 
         $match->setUserSid( $sessionid );
         $match->setCreated( new \DateTime() );
@@ -33,7 +33,7 @@ class MatchUtil
         $match->setCompSpock( 0 );
         $match->setCompWon( false );
 
-        $comp_choice = rand( 1, 5 );
+        
         if( $comp_choice == 1 ){
             $match->setCompRock( 1 );
         }
@@ -161,9 +161,102 @@ class MatchUtil
 
     /**
     * Get Stats
+    * Method to retrieve match history for a "user" specified by a sessionId
+    */
+    public function getHistory( $sessionid ) {
+    	$repository = $this->em
+                ->getRepository('AppBundle:RpsslMatch');
+        $matches = $repository->findBy(
+            array('user_sid' => $sessionid ),
+            array('created' => 'DESC')
+        );
+        return $matches;
+    }
+
+    /**
+    * Get Stats
     * Method to retrieve statistics for a "user" specified by a sessionId
     */
     public function getStats( $sessionid ) {
+
+    	$comp_rock = 0; 
+        $you_rock = 0; 
+        $comp_paper = 0;
+        $you_paper = 0;  
+        $comp_scissors = 0;  
+        $you_scissors = 0; 
+        $comp_lizard = 0; 
+        $you_lizard = 0;
+        $comp_spock = 0;
+        $you_spock = 0;
+        $wins = 0;
+        $ties = 0;
+        $losses = 0;
+
+    	$repository = $this->em
+                ->getRepository('AppBundle:RpsslMatch');
+        $matches = $repository->findBy(
+            array('user_sid' => $sessionid ),
+            array('created' => 'DESC')
+        );
+
+        foreach (  $matches as $rep_match ) {
+            if( $rep_match->getUserRock() == 1 ) {
+                $you_rock = $you_rock + 1;
+            }
+            if( $rep_match->getCompRock() == 1 ) {
+                $comp_rock = $comp_rock + 1;
+            }
+
+            if( $rep_match->getUserPaper() == 1 ) {
+                $you_paper = $you_paper + 1;
+            }
+            if( $rep_match->getCompPaper() == 1 ) {
+                $comp_paper = $comp_paper + 1;
+            }
+
+            if( $rep_match->getUserScissors() == 1 ) {
+                $you_scissors = $you_scissors + 1;
+            }
+            if( $rep_match->getCompScissors() == 1 ) {
+                $comp_scissors = $comp_scissors + 1;
+            }
+
+            if( $rep_match->getUserLizard() == 1 ) {
+                $you_lizard = $you_lizard + 1;
+            }
+            if( $rep_match->getCompLizard() == 1 ) {
+                $comp_lizard = $comp_lizard + 1;
+            }
+
+            if( $rep_match->getUserSpock() == 1 ) {
+                $you_spock = $you_spock + 1;
+            }
+            if( $rep_match->getCompSpock() == 1 ) {
+                $comp_spock = $comp_spock + 1;
+            }
+
+            if( $rep_match->getUserWon() ) {
+                $wins = $wins + 1;
+            }
+            if( $rep_match->getCompWon() ) {
+                $losses = $losses + 1;
+            }
+            if( $rep_match->getUserCompTie() ) {
+                $ties = $ties + 1;
+            }
+        }
+
+        $stats = array( 
+        	'comp_rock' => $comp_rock, 'you_rock' => $you_rock, 
+        	'comp_paper' => $comp_paper, 'you_paper' => $you_paper, 
+        	'comp_scissors' => $comp_scissors, 'you_scissors' => $you_scissors,
+        	'comp_lizard' => $comp_lizard, 'you_lizard' => $you_lizard,
+        	'comp_spock' => $comp_spock, 'you_spock' => $you_spock,
+        	'wins' => $wins, 'ties' => $ties, 'losses' => $losses,
+        );
+
+        return $stats;
 
     }
 
