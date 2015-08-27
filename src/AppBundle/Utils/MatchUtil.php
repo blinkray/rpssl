@@ -33,7 +33,7 @@ class MatchUtil
         $match->setCompSpock( 0 );
         $match->setCompWon( false );
 
-        
+        $comp_choice = rand( 1, 5 );
         if( $comp_choice == 1 ){
             $match->setCompRock( 1 );
         }

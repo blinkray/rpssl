@@ -57,10 +57,8 @@ class PlayController extends Controller
             $form->get('user_spock')->isClicked()
 
             ) {
-
-            $comp_choice = rand( 1, 5 );
-            $match = $this->get('game.util')->populateMatch( $form, $this->getRequest()->getSession()->getId(), $match, $comp_choice );
             
+            $match = $this->get('game.util')->populateMatch( $form, $this->getRequest()->getSession()->getId(), $match );            
             $matches = $this->get('game.util')->getHistory( $this->getRequest()->getSession()->getId() );
             $stats = $this->get('game.util')->getStats( $this->getRequest()->getSession()->getId() );
             
