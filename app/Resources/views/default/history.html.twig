@@ -1,13 +1,4 @@
 {% if matches|length > 0 %}
-<table width="100%" border="1">    
-    	<tr>
-    		<td align="center">Out of <em>{{ matches | length }} Matches</em></td>
-    		<td align="center">You've Won <em>{{ wins }}</em></td>
-    		<td align="center">You've Tied <em>{{ ties }}</em></td>
-    		<td align="center">You've Lost <em>{{ losses }}</em></td>
-    	</tr>
-</table>
-<hr>
 <center><p>How many times have each been used in my matches?</p></center>
 <table width="100%" border="1">     
     <thead>
@@ -37,7 +28,17 @@
         </tr>
     </tbody>
 </table>
-<hr>
+<br>
+<center><p>Match History</p></center>
+<table width="100%" border="1">    
+        <tr>
+            <td align="center">Out of <em>{{ matches | length }} Matches</em></td>
+            <td align="center">You've Won <em>{{ wins }}</em></td>
+            <td align="center">You've Tied <em>{{ ties }}</em></td>
+            <td align="center">You've Lost <em>{{ losses }}</em></td>
+        </tr>
+</table>
+<br>
 <table width="100%" border="1">
     <thead>    	
 	    <tr>
