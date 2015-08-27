@@ -160,7 +160,7 @@ class MatchUtil
     }
 
     /**
-    * Get Stats
+    * Get History
     * Method to retrieve match history for a "user" specified by a sessionId
     */
     public function getHistory( $sessionid ) {
