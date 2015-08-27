@@ -7,5 +7,3 @@ services:
    game.util:
         class: AppBundle\Utils\MatchUtil
         arguments: [ @doctrine.orm.entity_manager ]
-#        calls:
-#            - [setEntityManager, ["@doctrine.orm.entity_manager"]]
