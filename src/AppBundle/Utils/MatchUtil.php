@@ -67,8 +67,7 @@ class MatchUtil
                 $match->setCompRock( 1 );
                 $match->setUserCompTie( true );  
             }
-            else {
-                $match->setUserCompTie( false );
+            else {                
                 if( $comp_choice == 2 || $comp_choice == 5 ) {                        
                     $match->setCompWon( true );
                 }                    
