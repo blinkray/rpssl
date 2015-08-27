@@ -19,7 +19,7 @@ class MatchUtil
     * Populate Match
     * Method to build the match and fill properties
     */
-    public function populateMatch( $form, $sessionid, $match, $comp_choice ) {
+    public function populateMatch( $form, $sessionid, $match ) {
 
         $match->setUserSid( $sessionid );
         $match->setCreated( new \DateTime() );
