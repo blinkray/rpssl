@@ -1,45 +1,56 @@
 {% if matches|length > 0 %}
-<center><p>How many times have each been used in my matches?</p></center>
-<table width="100%" border="1">     
+<hr>
+<h3 class="text-center">How many times have each been used in my matches?</h3>
+<table class="table">     
     <thead>
         <th>Who</th>
-        <th>ROCK</th>
-        <th>PAPER</th>
-        <th>SCISSORS</th>
-        <th>LIZARD</th>
-        <th>SPOCK</th>
+        <th><i style="font-size: 20px;" title="ROCK" class="fa fa-hand-rock-o fa-flip-horizontal"></i></th>
+        <th><i style="font-size: 20px;"  title="PAPER" class="fa fa-hand-paper-o fa-flip-horizontal"></i></th>
+        <th><i style="font-size: 20px;"  title="SCISSORS" class="fa fa-hand-scissors-o fa-flip-horizontal"></i></th>
+        <th><i style="font-size: 20px;"  title="LIZARD" class="fa fa-hand-lizard-o fa-flip-horizontal"></i></th>
+        <th><i style="font-size: 20px;"  title="SPOCK" class="fa fa-hand-spock-o fa-flip-horizontal"></i></th>
     </thead> 
     <tbody>    
         <tr>
-            <td align="center">YOU</td>
-            <td align="center">{{ stats['you_rock'] }}</td>
-            <td align="center">{{ stats['you_paper'] }}</td>
-            <td align="center">{{ stats['you_scissors'] }}</em></td>
-            <td align="center">{{ stats['you_lizard'] }}</td>
-            <td align="center">{{ stats['you_spock'] }}</td>
+            <td>YOU</td>
+            <td>{{ stats['you_rock'] }}</td>
+            <td>{{ stats['you_paper'] }}</td>
+            <td>{{ stats['you_scissors'] }}</em></td>
+            <td>{{ stats['you_lizard'] }}</td>
+            <td>{{ stats['you_spock'] }}</td>
         </tr>
         <tr>
-            <td align="center">COMPUTER</td>
-            <td align="center">{{ stats['comp_rock'] }}</td>
-            <td align="center">{{ stats['comp_paper'] }}</td>
-            <td align="center">{{ stats['comp_scissors'] }}</em></td>
-            <td align="center">{{ stats['comp_lizard'] }}</td>
-            <td align="center">{{ stats['comp_spock'] }}</td>
+            <td>COMPUTER</td>
+            <td>{{ stats['comp_rock'] }}</td>
+            <td>{{ stats['comp_paper'] }}</td>
+            <td>{{ stats['comp_scissors'] }}</em></td>
+            <td>{{ stats['comp_lizard'] }}</td>
+            <td>{{ stats['comp_spock'] }}</td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<h3 class="text-center">Match History</h3>
+<table class="table">  
+    <thead>
+        <tr>
+            <th>Matches</th>
+            <th>Wins</th>
+            <th>Ties</th>
+            <th>Losses</th>
+        </tr>
+    </thead>  
+    <tbody>
+        <tr>
+            <td><em>{{ matches | length }}</em></td>
+            <td><em>{{ stats['wins'] }}</em></td>
+            <td><em>{{ stats['ties'] }}</em></td>
+            <td><em>{{ stats['losses'] }}</em></td>
         </tr>
     </tbody>
 </table>
 <br>
-<center><p>Match History</p></center>
-<table width="100%" border="1">    
-        <tr>
-            <td align="center">Out of <em>{{ matches | length }} Matches</em></td>
-            <td align="center">You've Won <em>{{ stats['wins'] }}</em></td>
-            <td align="center">You've Tied <em>{{ stats['ties'] }}</em></td>
-            <td align="center">You've Lost <em>{{ stats['losses'] }}</em></td>
-        </tr>
-</table>
-<br>
-<table width="100%" border="1">
+<table class="table">
     <thead>    	
 	    <tr>
 	    	<th>OUTCOME</th>
@@ -51,35 +62,35 @@
     	
     {% for match in matches %}
     	<tr>
-    		<td align="center">
+    		<td>
     			{% if match.userWon %}<span style="color:green;">WIN{% endif %}
     			{% if match.compWon %}<span style="color:red;">LOSS</span>{% endif %}
     			{% if match.userCompTie %}<span>TIE</span>{% endif %}
     		</td>
-    		<td align="center">
+    		<td>
         		{% if match.userRock == 1 %}
-        			ROCK
+        			<i style="font-size: 20px;" title="ROCK" class="fa fa-hand-rock-o fa-flip-horizontal"></i>
         		{% elseif match.userPaper == 1 %}
-        			PAPER
+        			<i style="font-size: 20px;"  title="PAPER" class="fa fa-hand-paper-o fa-flip-horizontal"></i>
         		{% elseif match.userScissors == 1 %}
-        			SCISSORS
+        			<i style="font-size: 20px;"  title="SCISSORS" class="fa fa-hand-scissors-o fa-flip-horizontal"></i>
         		{% elseif match.userLizard == 1 %}
-        			LIZARD
+        			<i style="font-size: 20px;"  title="LIZARD" class="fa fa-hand-lizard-o fa-flip-horizontal"></i>
         		{% elseif match.userSpock == 1 %}
-        			SPOCK
+        			<i style="font-size: 20px;"  title="SPOCK" class="fa fa-hand-spock-o fa-flip-horizontal"></i>
         		{% endif %}
         	</td>
-        	<td align="center">
+        	<td>
         		{% if match.compRock == 1 %}
-        			ROCK
+        			<i style="font-size: 20px;" title="ROCK" class="fa fa-hand-rock-o"></i>
         		{% elseif match.compPaper == 1 %}
-        			PAPER
+        			<i style="font-size: 20px;"  title="PAPER" class="fa fa-hand-paper-o"></i>
         		{% elseif match.compScissors == 1 %}
-        			SCISSORS
+        			<i style="font-size: 20px;"  title="SCISSORS" class="fa fa-hand-scissors-o"></i>
         		{% elseif match.compLizard == 1 %}
-        			LIZARD
+        			<i style="font-size: 20px;"  title="LIZARD" class="fa fa-hand-lizard-o"></i>
         		{% elseif match.compSpock == 1 %}
-        			SPOCK
+        			<i style="font-size: 20px;"  title="SPOCK" class="fa fa-hand-spock-o"></i>
         		{% endif %}
         	</td>
     	</tr>        

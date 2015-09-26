@@ -19,11 +19,11 @@ class PlayController extends Controller
         $form = $this->createFormBuilder( $match )
             ->setAction($this->generateUrl('game'))
             ->setMethod('POST')
-            ->add('user_rock', 'submit', array( 'label' => 'Rock' ))
-            ->add('user_paper', 'submit', array( 'label' => 'Paper' ))
-            ->add('user_scissors', 'submit', array( 'label' => 'Scissors' ))
-            ->add('user_lizard', 'submit', array( 'label' => 'Lizard' ))
-            ->add('user_spock', 'submit', array( 'label' => 'Spock' ))            
+            ->add('user_rock', 'submit', array( 'label' => ' ' ))
+            ->add('user_paper', 'submit', array( 'label' => ' ' ))
+            ->add('user_scissors', 'submit', array( 'label' => ' ' ))
+            ->add('user_lizard', 'submit', array( 'label' => ' ' ))
+            ->add('user_spock', 'submit', array( 'label' => ' ' ))            
             ->getForm();
 
         return $this->render('default/play.html.twig', array(
@@ -41,11 +41,11 @@ class PlayController extends Controller
         $form = $this->createFormBuilder( $match )
             ->setAction($this->generateUrl('game'))
             ->setMethod('POST')
-            ->add('user_rock', 'submit', array( 'label' => 'Rock' ))
-            ->add('user_paper', 'submit', array( 'label' => 'Paper' ))
-            ->add('user_scissors', 'submit', array( 'label' => 'Scissors' ))
-            ->add('user_lizard', 'submit', array( 'label' => 'Lizard' ))
-            ->add('user_spock', 'submit', array( 'label' => 'Spock' ))            
+            ->add('user_rock', 'submit', array( 'label' => ' ' ))
+            ->add('user_paper', 'submit', array( 'label' => ' ' ))
+            ->add('user_scissors', 'submit', array( 'label' => ' ' ))
+            ->add('user_lizard', 'submit', array( 'label' => ' ' ))
+            ->add('user_spock', 'submit', array( 'label' => ' ' ))            
             ->getForm();    
         $form->handleRequest($request);
 

@@ -1,0 +1,64 @@
+div#form {
+	margin-bottom: 1.5em;
+	div {
+
+		width: 20%;
+		display: inline;
+    	margin: .5em;
+    	
+
+		button {
+
+			width: 55px;
+			border-radius: 75px;
+			background-color: #fff;
+    		border: 3px solid #000;
+
+    		&:hover, &:active {
+				background-color: blue;
+				color: #fff;
+			}
+
+
+			&#form_user_rock {
+				&:after {
+					font-family: FontAwesome;
+					content: '\f255' !important;
+					font-size: 30px;
+				}				
+			}
+			&#form_user_paper {
+				&:after {
+					font-family: FontAwesome;
+					content: '\f256' !important;
+					font-size: 30px;
+				}
+			}
+			&#form_user_scissors {
+				&:after {
+					font-family: FontAwesome;
+					content: '\f257' !important;
+					font-size: 30px;
+				}
+			}
+			&#form_user_lizard {
+				&:after {
+					font-family: FontAwesome;
+					content: '\f258' !important;
+					font-size: 30px;
+				}
+			}
+			&#form_user_spock {
+				&:after {
+					font-family: FontAwesome;
+					content: '\f259' !important;
+					font-size: 30px;
+				}
+			}
+		}			
+	}	
+}
+
+.well-lg {
+	padding: 10px;
+}
