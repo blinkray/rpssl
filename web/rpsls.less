@@ -1,64 +1,92 @@
+@import "/bower_components/Hover/less/hover.less";
+
+.bang-text, .jumbotron p {
+	margin: 2.5em 2.5em 2.5em 2.5em;
+}
+.thumbnail {
+	i {
+		padding-top: .25em;
+	}
+}
+
+.form-frame {
+	margin-top: 2.0em;
+}
+.well-lg {
+	height: 400px;
+}
+
+body {
+	margin-top: 2.5em;
+}
 div#form {
-	margin-bottom: 1.5em;
+	margin: 3.5em;
+	padding: 2.0em;
 	div {
 
 		width: 20%;
 		display: inline;
     	margin: .5em;
-    	
+    	padding: 2.5em;
 
 		button {
 
-			width: 55px;
+			width: 80px;
 			border-radius: 75px;
 			background-color: #fff;
-    		border: 3px solid #000;
+    		border: 0px solid transparent;
+
 
     		&:hover, &:active {
-				background-color: blue;
+				
 				color: #fff;
+				
+				.wobble-horizontal();
+				
 			}
 
 
 			&#form_user_rock {
+				color: brown;
 				&:after {
 					font-family: FontAwesome;
 					content: '\f255' !important;
-					font-size: 30px;
-				}				
+					font-size: 50px;
+				}	
+
 			}
 			&#form_user_paper {
+				color: tan;
 				&:after {
 					font-family: FontAwesome;
 					content: '\f256' !important;
-					font-size: 30px;
+					font-size: 50px;
 				}
 			}
 			&#form_user_scissors {
+				color: silver;
 				&:after {
 					font-family: FontAwesome;
 					content: '\f257' !important;
-					font-size: 30px;
+					font-size: 50px;
 				}
 			}
 			&#form_user_lizard {
+				color: #003C00;
 				&:after {
 					font-family: FontAwesome;
 					content: '\f258' !important;
-					font-size: 30px;
+					font-size: 50px;
 				}
 			}
 			&#form_user_spock {
+				color: #00b844;
 				&:after {
 					font-family: FontAwesome;
 					content: '\f259' !important;
-					font-size: 30px;
+					font-size: 50px;
 				}
 			}
 		}			
 	}	
-}
-
-.well-lg {
-	padding: 10px;
 }
