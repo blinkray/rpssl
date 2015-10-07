@@ -1,5 +1,27 @@
 @import "/bower_components/Hover/less/hover.less";
 
+@user-rock-color: brown;
+@user-paper-color: tan;
+@user-scissors-color: silver;
+@user-lizard-color: orange;
+@user-spock-color: #00b844;
+
+.user-rock-icon {
+	color: @user-rock-color;
+}
+.user-paper-icon {
+	color: @user-paper-color;
+}
+.user-scissors-icon {
+	color: @user-scissors-color;
+}
+.user-lizard-icon {
+	color: @user-lizard-color;
+}
+.user-spock-icon {
+	color: @user-spock-color;
+}
+
 .bang-text, .jumbotron p {
 	margin: 2.5em 2.5em 2.5em 2.5em;
 }
@@ -13,80 +35,216 @@
 	margin-top: 2.0em;
 }
 .well-lg {
+	&.wpn-box {
+		height: 600px;
+	}
 	height: 400px;
 }
 
 body {
 	margin-top: 2.5em;
 }
-div#form {
-	margin: 3.5em;
-	padding: 2.0em;
+
+h1.winner {
+	opacity: 0;
+}
+
+h1.fade {
+    margin-top: 25px;
+    
+    text-align: center;
+
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -webkit-iteration-count: 1;
+    -webkit-animation-fill-mode:forwards;
+       -moz-animation: fadein 2s; /* Firefox < 16 */
+       -moz-iteration-count: 1;
+       -moz-animation-fill-mode:forwards;
+        -ms-animation: fadein 2s; /* Internet Explorer */
+         -o-animation: fadein 2s; /* Opera < 12.1 */
+            animation: fadein 2s;
+            iteration-count: 1;
+            animation-fill-mode:forwards;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+div#form {	
+	
 	div {
 
 		width: 20%;
-		display: inline;
-    	margin: .5em;
-    	padding: 2.5em;
+		display: block;
+    	margin: auto;
+    	padding-bottom: .5em;
 
 		button {
 
 			width: 80px;
 			border-radius: 75px;
-			background-color: #fff;
+			background-color: transparent;
     		border: 0px solid transparent;
 
-
-    		&:hover, &:active {
-				
-				color: #fff;
-				
+    		&:hover, &:active {				
+				color: #fff;				
 				.wobble-horizontal();
-				
 			}
 
-
 			&#form_user_rock {
-				color: brown;
+				color: @user-rock-color;
 				&:after {
 					font-family: FontAwesome;
 					content: '\f255' !important;
 					font-size: 50px;
+					text-shadow: 10px 10px 10px #000;
 				}	
 
 			}
 			&#form_user_paper {
-				color: tan;
+				color: @user-paper-color;
 				&:after {
 					font-family: FontAwesome;
 					content: '\f256' !important;
 					font-size: 50px;
+					text-shadow: 10px 10px 10px #000;
 				}
 			}
 			&#form_user_scissors {
-				color: silver;
+				color: @user-scissors-color;
 				&:after {
 					font-family: FontAwesome;
 					content: '\f257' !important;
 					font-size: 50px;
+					text-shadow: 10px 10px 10px #000;
 				}
 			}
 			&#form_user_lizard {
-				color: #003C00;
+				color: @user-lizard-color;
 				&:after {
 					font-family: FontAwesome;
 					content: '\f258' !important;
 					font-size: 50px;
+					text-shadow: 10px 10px 10px #000;
 				}
 			}
 			&#form_user_spock {
-				color: #00b844;
+				color: @user-spock-color;
 				&:after {
 					font-family: FontAwesome;
 					content: '\f259' !important;
 					font-size: 50px;
+					text-shadow: 10px 10px 10px #000;
 				}
 			}
 		}			
 	}	
+}
+
+@media (min-width: 992px) {
+
+	.well-lg {
+		&.wpn-box {
+			height: 400px;
+		}
+		height: 400px;
+	}
+
+	div#form {
+		margin: 3.5em;
+		padding: 2.0em;
+		div {
+
+			width: 20%;
+			display: inline;
+	    	margin: .5em;   
+
+			button {
+
+				width: 80px;
+				border-radius: 75px;
+				background-color: transparent;
+	    		border: 0px solid transparent;
+
+	    		&:hover, &:active {					
+					color: #fff;					
+					.wobble-horizontal();					
+				}
+
+
+				&#form_user_rock {
+					color: @user-rock-color;
+					&:after {
+						font-family: FontAwesome;
+						content: '\f255' !important;
+						font-size: 50px;
+						text-shadow: 10px 10px 10px #000;
+					}	
+
+				}
+				&#form_user_paper {
+					color: @user-paper-color;
+					&:after {
+						font-family: FontAwesome;
+						content: '\f256' !important;
+						font-size: 50px;
+						text-shadow: 10px 10px 10px #000;
+					}
+				}
+				&#form_user_scissors {
+					color: @user-scissors-color;
+					&:after {
+						font-family: FontAwesome;
+						content: '\f257' !important;
+						font-size: 50px;
+						text-shadow: 10px 10px 10px #000;
+					}
+				}
+				&#form_user_lizard {
+					color: @user-lizard-color;
+					&:after {
+						font-family: FontAwesome;
+						content: '\f258' !important;
+						font-size: 50px;
+						text-shadow: 10px 10px 10px #000;
+					}
+				}
+				&#form_user_spock {
+					color: @user-spock-color;
+					&:after {
+						font-family: FontAwesome;
+						content: '\f259' !important;
+						font-size: 50px;
+						text-shadow: 10px 10px 10px #000;
+					}
+				}
+			}			
+		}	
+	}
 }

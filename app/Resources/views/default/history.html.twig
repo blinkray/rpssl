@@ -4,11 +4,11 @@
 <table class="table table-striped .table-hover .table-bordered">     
     <thead>
         <th>Who</th>
-        <th><i style="font-size: 20px;" title="ROCK" class="fa fa-hand-rock-o fa-flip-horizontal"></i></th>
-        <th><i style="font-size: 20px;"  title="PAPER" class="fa fa-hand-paper-o fa-flip-horizontal"></i></th>
-        <th><i style="font-size: 20px;"  title="SCISSORS" class="fa fa-hand-scissors-o fa-flip-horizontal"></i></th>
-        <th><i style="font-size: 20px;"  title="LIZARD" class="fa fa-hand-lizard-o fa-flip-horizontal"></i></th>
-        <th><i style="font-size: 20px;"  title="SPOCK" class="fa fa-hand-spock-o fa-flip-horizontal"></i></th>
+        <th><i style="font-size: 20px;" title="ROCK" class="user-rock-icon fa fa-hand-rock-o fa-flip-horizontal"></i></th>
+        <th><i style="font-size: 20px;"  title="PAPER" class="user-paper-icon fa fa-hand-paper-o fa-flip-horizontal"></i></th>
+        <th><i style="font-size: 20px;"  title="SCISSORS" class="user-scissors-icon fa fa-hand-scissors-o fa-flip-horizontal"></i></th>
+        <th><i style="font-size: 20px;"  title="LIZARD" class="user-lizard-icon fa fa-hand-lizard-o fa-flip-horizontal"></i></th>
+        <th><i style="font-size: 20px;"  title="SPOCK" class="user-spock-icon fa fa-hand-spock-o fa-flip-horizontal"></i></th>
     </thead> 
     <tbody>    
         <tr>
@@ -69,28 +69,28 @@
     		</td>
     		<td>
         		{% if match.userRock == 1 %}
-        			<i style="font-size: 20px;" title="ROCK" class="fa fa-hand-rock-o fa-flip-horizontal"></i>
+        			<i style="font-size: 20px;" title="ROCK" class="user-rock-icon fa fa-hand-rock-o fa-flip-horizontal"></i>
         		{% elseif match.userPaper == 1 %}
-        			<i style="font-size: 20px;"  title="PAPER" class="fa fa-hand-paper-o fa-flip-horizontal"></i>
+        			<i style="font-size: 20px;"  title="PAPER" class="user-paper-icon fa fa-hand-paper-o fa-flip-horizontal"></i>
         		{% elseif match.userScissors == 1 %}
-        			<i style="font-size: 20px;"  title="SCISSORS" class="fa fa-hand-scissors-o fa-flip-horizontal"></i>
+        			<i style="font-size: 20px;"  title="SCISSORS" class="user-scissors-icon fa fa-hand-scissors-o fa-flip-horizontal"></i>
         		{% elseif match.userLizard == 1 %}
-        			<i style="font-size: 20px;"  title="LIZARD" class="fa fa-hand-lizard-o fa-flip-horizontal"></i>
+        			<i style="font-size: 20px;"  title="LIZARD" class="user-lizard-icon fa fa-hand-lizard-o fa-flip-horizontal"></i>
         		{% elseif match.userSpock == 1 %}
-        			<i style="font-size: 20px;"  title="SPOCK" class="fa fa-hand-spock-o fa-flip-horizontal"></i>
+        			<i style="font-size: 20px;"  title="SPOCK" class="user-spock-icon fa fa-hand-spock-o fa-flip-horizontal"></i>
         		{% endif %}
         	</td>
         	<td>
         		{% if match.compRock == 1 %}
-        			<i style="font-size: 20px;" title="ROCK" class="fa fa-hand-rock-o"></i>
+        			<i style="font-size: 20px;" title="ROCK" class="user-rock-icon fa fa-hand-rock-o"></i>
         		{% elseif match.compPaper == 1 %}
-        			<i style="font-size: 20px;"  title="PAPER" class="fa fa-hand-paper-o"></i>
+        			<i style="font-size: 20px;"  title="PAPER" class="user-paper-icon fa fa-hand-paper-o"></i>
         		{% elseif match.compScissors == 1 %}
-        			<i style="font-size: 20px;"  title="SCISSORS" class="fa fa-hand-scissors-o"></i>
+        			<i style="font-size: 20px;"  title="SCISSORS" class="user-scissors-icon fa fa-hand-scissors-o"></i>
         		{% elseif match.compLizard == 1 %}
-        			<i style="font-size: 20px;"  title="LIZARD" class="fa fa-hand-lizard-o"></i>
+        			<i style="font-size: 20px;"  title="LIZARD" class="user-lizard-icon fa fa-hand-lizard-o"></i>
         		{% elseif match.compSpock == 1 %}
-        			<i style="font-size: 20px;"  title="SPOCK" class="fa fa-hand-spock-o"></i>
+        			<i style="font-size: 20px;"  title="SPOCK" class="user-spock-icon fa fa-hand-spock-o"></i>
         		{% endif %}
         	</td>
     	</tr>        

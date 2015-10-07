@@ -4,7 +4,7 @@
     {% if the_match is defined %} 
         <div class="row">
 
-            <div class="col-md-6 col-sm-6 col-xs-12 text-center">
+            <div class="col-md-6 col-sm-6 col-xs-6 text-center">
                 <div class="thumbnail">                
                     {% if the_match is defined %}                   
                         {% if the_match.getUserRock == 1 %}
@@ -26,7 +26,7 @@
                 </div>            
             </div>
 
-            <div class="col-md-6 col-sm-6 col-xs-12 text-center">            
+            <div class="col-md-6 col-sm-6 col-xs-6 text-center">            
                 <div class="thumbnail">                
                     {% if the_match is defined %}  
                         {% if the_match.getCompRock == 1 %}
@@ -54,15 +54,15 @@
     <div class="row">
         <div class="col-md-12 text-center form-frame">
 
-            <div class="well well-lg">
+            <div class="well well-lg wpn-box">
 
                 {% if the_match is defined %}                        
                     {% if the_match.getUserWon %}
-                        <h1 style="color:green;">YOU WIN!!</h1>
+                        <h1 class="winner fade" style="color:green;">YOU WIN!!</h1>
                     {% elseif the_match.getCompWon %}
-                        <h1 style="color:red;">YOU LOSE</h1>
+                        <h1 class="winner fade" style="color:red;">YOU LOSE</h1>
                     {% elseif the_match.getUserCompTie %}
-                        <h1>TIE</h1>
+                        <h1 class="winner fade">TIE</h1>
                     {% endif %}
                 {% endif %}
 
